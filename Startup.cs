@@ -30,7 +30,7 @@ namespace websockets_middleware
                 c.OnMessage = async (socket, message) =>
                 {
                     Console.WriteLine($"OnMessage: {message}");
-                    //await connection.SendAsync(socket, "hello world");
+                    await c.SendAsync(socket, $"Echo'd Message: {message}");
                 };
                 c.OnBinary = (socket, bytes) =>
                 {
