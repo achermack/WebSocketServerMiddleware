@@ -19,6 +19,6 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet build src/netfetch
+        run: dotnet build
     # - name: Test (platform specific)
     #   run: dotnet test tests/netfetch.Tests
