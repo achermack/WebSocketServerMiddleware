@@ -4,6 +4,15 @@ This middleware uses the System.Net.WebSockets library to easily configure Kestr
 Uses Microsoft.Extensions.Logging to log errors and debug information
 
 # Usage
+## Install
+
+Grab the latest release from [nuget](https://www.nuget.org/packages/WebSocketServerMiddleware/)
+```bash
+dotnet add package WebSocketServerMiddleware # or
+nuget add WebSocketServerMiddleware
+```
+
+
 
 ``` csharp
             // First, you want to configure the port of your http server (and thus your websocket server)
@@ -18,6 +27,7 @@ Uses Microsoft.Extensions.Logging to log errors and debug information
 
             // In Startup.cs configure method, you want to configure how each connection is handled by the middleware
             // Inspired by Fleck
+            using chermio.WebSocketServerMiddleware;
 
             var _newConnection = new WebSocketConnection();
             _newConnection.Start(c =>
@@ -39,3 +49,4 @@ Uses Microsoft.Extensions.Logging to log errors and debug information
             app.UseWebSocketServer(server);
 
 ```
+

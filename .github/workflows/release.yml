@@ -22,7 +22,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            Check the release out on nuget: https://www.nuget.org/packages/netfetch
+            Check the release out on nuget: https://www.nuget.org/packages/WebSocketServerMiddleware/
 
           draft: false
           prerelease: false
