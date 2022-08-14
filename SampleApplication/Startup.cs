@@ -37,7 +37,7 @@ namespace SampleApplication
                 };
             });
             app.UseWebSockets();
-            app.UseWebSocketMiddleware(server);
+            app.UseWebSocketServer(server);
         }
     }
 }

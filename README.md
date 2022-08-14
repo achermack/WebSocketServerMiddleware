@@ -1,13 +1,13 @@
-# ASP.NET Core WebSocket Middleware
+# ASP.NET Core WebSocket Server Middleware
 
-This middleware uses the System.Net.WebSockets library to easily configure Kestrel to accept incoming WebSocket connections and define handlers for them, similiarly to Fleck
+This middleware uses the System.Net.WebSockets library to easily configure Kestrel to accept incoming WebSocket connections and define handlers for them, similiarly to Fleck but with no external dependencies
 
 
 # Usage
 
 ``` csharp
-// First, you want to configure the port of your websocket server
-// In Program.cs
+            // First, you want to configure the port of your http server (and thus your websocket server)
+            // In Program.cs
 
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -16,8 +16,8 @@ This middleware uses the System.Net.WebSockets library to easily configure Kestr
                     webBuilder.UseUrls("http://*:8181");
                 });
 
-// In Startup.cs configure method, you want to configure how each connection is handled by the middleware
-// Inspired by Fleck
+            // In Startup.cs configure method, you want to configure how each connection is handled by the middleware
+            // Inspired by Fleck
 
             var _newConnection = new WebSocketConnection();
             _newConnection.Start(c =>
@@ -36,8 +36,6 @@ This middleware uses the System.Net.WebSockets library to easily configure Kestr
             });
 
             app.UseWebSockets();
-            app.UseMiddleware<WebSocketMiddleware>(server);
+            app.UseWebSocketServer(server);
 
 ```
-
-

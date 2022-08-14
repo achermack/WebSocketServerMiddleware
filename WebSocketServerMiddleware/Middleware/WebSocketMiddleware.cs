@@ -72,9 +72,8 @@ namespace chermio.WebSocketServerMiddleware
     }
     public static class WebSocketMiddlewareExtensions
     {
-        public static IApplicationBuilder UseWebSocketMiddleware(this IApplicationBuilder builder, WebSocketConnection server)
+        public static IApplicationBuilder UseWebSocketServer(this IApplicationBuilder builder, WebSocketConnection server)
         {
-            // builder.UseWebSockets();
             return builder.UseMiddleware<WebSocketMiddleware>(server);
         }
     }
