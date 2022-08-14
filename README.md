@@ -1,7 +1,7 @@
 # ASP.NET Core WebSocket Server Middleware
 
 This middleware uses the System.Net.WebSockets library to easily configure Kestrel to accept incoming WebSocket connections and define handlers for them, similiarly to Fleck but with no external dependencies
-
+Uses Microsoft.Extensions.Logging to log errors and debug information
 
 # Usage
 
