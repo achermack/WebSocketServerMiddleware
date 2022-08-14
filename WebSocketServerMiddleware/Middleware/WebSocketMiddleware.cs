@@ -1,15 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.WebSockets;
+﻿using System.Net.WebSockets;
 using System.Text;
-
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace websockets_middleware
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+namespace chermio.WebSocketServerMiddleware
 {
     public class WebSocketMiddleware
     {
@@ -18,7 +12,7 @@ namespace websockets_middleware
         private readonly ILogger _logger;
         private readonly WebSocketConnection _connection;
 
-        public WebSocketMiddleware(RequestDelegate next,  ILoggerFactory loggerFactory, WebSocketConnection connection)
+        public WebSocketMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, WebSocketConnection connection)
         {
             _logger = loggerFactory.CreateLogger<WebSocketMiddleware>();
             _next = next;
@@ -65,7 +59,7 @@ namespace websockets_middleware
 
         private async Task Receive(WebSocket socket, Action<WebSocketReceiveResult, byte[]> handler)
         {
-            
+
             while (socket.State == WebSocketState.Open)
             {
 
@@ -74,6 +68,14 @@ namespace websockets_middleware
 
                 handler(result, buffer);
             }
+        }
+    }
+    public static class WebSocketMiddlewareExtensions
+    {
+        public static IApplicationBuilder UseWebSocketMiddleware(this IApplicationBuilder builder, WebSocketConnection server)
+        {
+            // builder.UseWebSockets();
+            return builder.UseMiddleware<WebSocketMiddleware>(server);
         }
     }
 }

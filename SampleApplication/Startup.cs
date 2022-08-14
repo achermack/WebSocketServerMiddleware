@@ -1,15 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using chermio.WebSocketServerMiddleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace websockets_middleware
+namespace SampleApplication
 {
     public class Startup
     {
@@ -37,9 +36,8 @@ namespace websockets_middleware
                     Encoding.UTF8.GetString(bytes);
                 };
             });
-
             app.UseWebSockets();
-            app.UseMiddleware<WebSocketMiddleware>(server);
+            app.UseWebSocketMiddleware(server);
         }
     }
 }
